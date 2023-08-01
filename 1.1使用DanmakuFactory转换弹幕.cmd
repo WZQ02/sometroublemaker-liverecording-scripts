@@ -51,8 +51,8 @@ if %dmsetting2%==n (
 )
 for %%i in (录制-*.xml.ass) do (set af=%%i && move /y %%i !af:~0,-9!.ass)
 
-echo 已完成弹幕文件转换。5 秒后进入视频压制 (若不想压制视频请直接关闭本窗口)...
-ping localhost -n 6 > nul
+echo 已完成弹幕文件转换。
+ping localhost -n 4 > nul
 
 cd %script_path%
 start cmd /c "1.2^(可选^)更改弹幕字体样式.cmd"

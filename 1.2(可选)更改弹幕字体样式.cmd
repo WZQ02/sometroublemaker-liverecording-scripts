@@ -8,7 +8,8 @@ where pwsh > nul
 if %ERRORLEVEL% == 1 (
 	rem echo 本批处理用到了新版 Powershell 的语法（因为 cmd 里面批量更改文本内容不方便），但你似乎未安装新版 Powershell。请前往 https://aka.ms/PSWindows 安装它...
 	echo 检测到未安装新版 Powershell。将跳过这一步骤...
-	ping localhost -n 4 > nul
+	echo 5 秒后进入视频压制 （若不想压制视频请直接关闭本窗口）...
+	ping localhost -n 6 > nul
 	start 2.批量压制弹幕到视频.cmd
 	goto :EOF
 )
@@ -22,9 +23,11 @@ cd %roompath%
 echo 需要将弹幕转换为什么样式？
 echo 1. 仅将用户名字体大小缩小为 40 字号（要求上一步转换弹幕时，启用用户名显示，且字体使用默认的 50 字号）
 echo 2. 缩小用户名字体，同时把字体描边改成投影，用户名字体改为思源黑体，弹幕字体改为黑体（要求上一步转换弹幕时，启用用户名显示，且字体使用默认的 50 字号，同时你需要已经安装思源黑体字体）
+echo 3. 不更改弹幕字幕样式。
 set /p style=指定：
 if "%style%"=="1" goto :alter1
 if "%style%"=="2" goto :alter2
+if "%style%"=="3" echo 你已选择不更改弹幕样式。 && goto :end
 goto :ask1
 
 :alter1
@@ -34,6 +37,7 @@ set strOld2=\fs50\c^&HBCACF7
 set strNew2=\fs40\c^&HBCACF7
 for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld1%', '%strNew1%') | Out-File %%i -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld2%', '%strNew2%') | Out-File %%i -encoding utf8")
+echo 已更改弹幕字体样式。
 goto :end
 
 :alter2
@@ -54,10 +58,11 @@ for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld1%', '%strNe
 for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld2%', '%strNew2%') | Out-File %%i -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld3%', '%strNew3%') | Out-File %%i -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld4%', '%strNew4%') | Out-File %%i -encoding utf8")
+echo 已更改弹幕字体样式。
 
 :end
-echo 已更改弹幕字体样式。
-ping localhost -n 4 > nul
+echo 5 秒后进入视频压制（若不想压制视频请直接关闭本窗口）...
+ping localhost -n 6 > nul
 
 cd %script_path%
 start 2.批量压制弹幕到视频.cmd
