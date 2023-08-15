@@ -76,9 +76,9 @@ mkdir temp
 
 for %%i in (录制-*.ass) do (
 set r=%%i
-copy %%i temp\%%i
+copy "%%i" "temp\%%i"
 cd temp
-ren %%i !r:~3,28!.ass
+ren "%%i" "!r:~3,27!.ass"
 cd ..
 )
 
@@ -87,12 +87,12 @@ cd temp
 if %vidsetting2%==n goto :nocompaudio
 for %%i in (..\录制-*.flv) do (
 set r=%%i
-%ffpath% -i %%i -c:v %vidsetting1% -vf "ass=!r:~6,28!.ass" -c:a aac %vidsetting3% !r:~6,22!_converted.ts
+%ffpath% -i "%%i" -c:v %vidsetting1% -vf "ass=!r:~6,27!.ass" -c:a aac %vidsetting3% "!r:~6,22!_converted.ts"
 )
 :nocompaudio
 for %%i in (..\录制-*.flv) do (
 set r=%%i
-%ffpath% -i %%i -c:v %vidsetting1% -vf "ass=!r:~6,28!.ass" -c:a copy %vidsetting3% !r:~6,22!_converted.ts
+%ffpath% -i "%%i" -c:v %vidsetting1% -vf "ass=!r:~6,27!.ass" -c:a copy %vidsetting3% "!r:~6,22!_converted.ts"
 )
 
 echo 已完成视频转换。

@@ -35,8 +35,8 @@ set strOld1=\c^&H
 set strNew1=\fs50\c^&H
 set strOld2=\fs50\c^&HBCACF7
 set strNew2=\fs40\c^&HBCACF7
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld1%', '%strNew1%') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld2%', '%strNew2%') | Out-File %%i -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld1%', '%strNew1%') | Out-File '%%i' -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld2%', '%strNew2%') | Out-File '%%i' -encoding utf8")
 echo 已更改弹幕字体样式。
 goto :end
 
@@ -52,12 +52,12 @@ set strNew1=\blur1\3c^&H000000^&\3a^&H7F^&\move(
 set strNew2=:\h{\fn黑体\b1\c^&
 set strNew3={\blur1\3c^&H000000^&\3a^&H7F^&\pos(960
 set strNew4=:\h{\fn黑体\b1\c^&
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%style1%', '%stylen1%') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strRemove1%', '') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld1%', '%strNew1%') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld2%', '%strNew2%') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld3%', '%strNew3%') | Out-File %%i -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc %%i).replace('%strOld4%', '%strNew4%') | Out-File %%i -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%style1%', '%stylen1%') | Out-File '%%i' -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strRemove1%', '') | Out-File %%i -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld1%', '%strNew1%') | Out-File '%%i' -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld2%', '%strNew2%') | Out-File '%%i' -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld3%', '%strNew3%') | Out-File '%%i' -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld4%', '%strNew4%') | Out-File '%%i' -encoding utf8")
 echo 已更改弹幕字体样式。
 
 :end
