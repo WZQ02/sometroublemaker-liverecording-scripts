@@ -69,7 +69,7 @@ for /f "skip=1 delims=" %%a in (path.cfg) do (set roompath=%%a && goto :g1)
 :g1
 echo 已指定录播房间路径为 %roompath%
 
-cd %roompath%
+cd /d %roompath%
 echo 正在批量压制弹幕到视频...
 
 mkdir temp
@@ -98,6 +98,6 @@ set r=%%i
 echo 已完成视频转换。
 ping localhost -n 4 > nul
 
-cd %script_path%
+cd /d %script_path%
 start 3.合并压制后得到的视频为mp4格式.cmd
 echo 现在可关闭本窗口。

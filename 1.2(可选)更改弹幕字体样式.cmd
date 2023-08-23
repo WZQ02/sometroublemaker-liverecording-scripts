@@ -17,7 +17,7 @@ if %ERRORLEVEL% == 1 (
 for /f "skip=1 delims=" %%a in (path.cfg) do (set roompath=%%a && goto :g1)
 :g1
 echo 已指定录播房间路径为 %roompath%
-cd %roompath%
+cd /d %roompath%
 
 :ask1
 echo 需要将弹幕转换为什么样式？
@@ -53,7 +53,7 @@ set strNew2=:\h{\fn黑体\b1\c^&
 set strNew3={\blur1\3c^&H000000^&\3a^&H7F^&\pos(960
 set strNew4=:\h{\fn黑体\b1\c^&
 for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%style1%', '%stylen1%') | Out-File '%%i' -encoding utf8")
-for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strRemove1%', '') | Out-File %%i -encoding utf8")
+for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strRemove1%', '') | Out-File '%%i' -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld1%', '%strNew1%') | Out-File '%%i' -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld2%', '%strNew2%') | Out-File '%%i' -encoding utf8")
 for %%i in (录制-*.ass) do (pwsh -Command "(gc '%%i').replace('%strOld3%', '%strNew3%') | Out-File '%%i' -encoding utf8")
@@ -64,6 +64,6 @@ echo 已更改弹幕字体样式。
 echo 5 秒后进入视频压制（若不想压制视频请直接关闭本窗口）...
 ping localhost -n 6 > nul
 
-cd %script_path%
+cd /d %script_path%
 start 2.批量压制弹幕到视频.cmd
 echo 现在可关闭本窗口。

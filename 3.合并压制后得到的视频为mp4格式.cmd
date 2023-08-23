@@ -20,7 +20,7 @@ for /f "skip=1 delims=" %%a in (path.cfg) do (set roompath=%%a && goto :g1)
 :g1
 echo 已指定录播房间路径为 %roompath%。
 
-cd %roompath%
+cd /d %roompath%
 
 for %%i in (temp\*_converted.ts) do echo file '%%i' >> tsmerge_filelist.txt
 echo 请在弹出的记事本窗口中检查，是否要合并这些视频文件？（确认没问题后，保存并关闭记事本窗口以继续）

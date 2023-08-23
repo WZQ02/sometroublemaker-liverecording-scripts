@@ -42,7 +42,7 @@ set /p dmsetting2=是否显示弹幕发送者用户名（默认为不显示，输入任意字符并回车则设
 echo %dmsetting2%) > danmaku.cfg
 
 :convert_danmaku
-cd %roompath%
+cd /d %roompath%
 echo 正在批量转换该房间的弹幕文件...
 if %dmsetting2%==n (
 	for %%i in (录制-*.xml) do %dmfpath% -o ass "%%i.ass" -i "%%i" -r 1920x1080 -S %dmsetting1% -D 0 -L 2
@@ -54,6 +54,6 @@ for %%i in (录制-*.xml.ass) do (set af="%%i" && move /y "%%i" !af:~0,-10!.ass)
 echo 已完成弹幕文件转换。
 ping localhost -n 4 > nul
 
-cd %script_path%
+cd /d %script_path%
 start cmd /c "1.2^(可选^)更改弹幕字体样式.cmd"
 echo 现在可关闭本窗口。
