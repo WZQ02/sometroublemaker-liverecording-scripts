@@ -31,6 +31,16 @@ set timestamp=%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 set outputname=output_%timestamp%.mp4
 
 %ffpath% -f concat -safe 0 -i tsmerge_filelist.txt -c copy %outputname%
+
+if exist %outputname% goto :done
+goto :fail
+
+:fail
+echo 视频合并失败，您将需要自行检查并手动合并视频。按任意键退出...
+pause > nul
+goto :EOF
+
+:done
 del tsmerge_filelist.txt
 echo 正在清除合并前的视频和弹幕文件...
 del temp\*_converted.ts
