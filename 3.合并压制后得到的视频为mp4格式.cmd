@@ -27,7 +27,12 @@ echo ÇëÔÚµ¯³öµÄ¼ÇÊÂ±¾´°¿ÚÖĞ¼ì²é£¬ÊÇ·ñÒªºÏ²¢ÕâĞ©ÊÓÆµÎÄ¼ş£¿£¨È·ÈÏÃ»ÎÊÌâºó£¬±£´æ²¢¹
 notepad tsmerge_filelist.txt
 echo ÕıÔÚºÏ²¢...
 
-set timestamp=%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
+set timestamp_date=%date:~0,4%%date:~5,2%%date:~8,2%
+set timestamp_hour=%time:~0,2%
+if /i %timestamp_hour% LSS 10 (set timestamp_hour=0%time:~1,1%)
+set timestamp_time=%timestamp_hour%%time:~3,2%%time:~6,2%
+set timestamp=%timestamp_date%%timestamp_time%
+
 set outputname=output_%timestamp%.mp4
 
 %ffpath% -f concat -safe 0 -i tsmerge_filelist.txt -c copy %outputname%
